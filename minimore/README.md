@@ -1,11 +1,11 @@
 minimore
 ========
 
-Author: Calon Xu
-Author URI: http://calon.weblogs.us/
-Theme URI: http://calon.weblogs.us/minimore
+- Author: Calon Xu
+- Author URI: http://calon.weblogs.us/
+- Theme URI: http://calon.weblogs.us/minimore
 
-Minimore is a clean and mininal style WordPress theme that based on Leo Babauta's [mnmlist v1](http://mnmlist.com/theme), which .
+Minimore is a clean and mininal style WordPress theme that based on Leo Babauta's [mnmlist v1](http://mnmlist.com/theme).
 
 The original mnmlist theme has no widgets, comments, search form, etc. Most theme user have to add them by self.
 So I take them back, reduced some unnecessary functions, maintaining the minimal clean style.
