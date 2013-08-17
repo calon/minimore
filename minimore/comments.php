@@ -1,59 +1,26 @@
 <?php
-/**
- * The template for displaying Comments.
- *
- * The area of the page that contains comments and the comment form.
- *
- * @package WordPress
- * @subpackage Twenty_Thirteen
- * @since Twenty Thirteen 1.0
- */
 
-/*
- * If the current post is protected by a password and the visitor has not yet
- * entered the password we will return early without loading the comments.
- */
 if ( post_password_required() )
-	return;
+    return;
 ?>
 
 <div id="comments" class="comments-area">
 
-	<?php if ( have_comments() ) : ?>
-		<h3 class="comments-title">
-			<?php
-				printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'minimore' ),
-					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
-			?>
-		</h3>
+<?php if ( have_comments() ) : ?>
+    <h4 id="comments"><?php comments_number('No Comments', 'One Comment', '% Comments' );?></h4>
+    <ul class="commentlist">
+        <?php wp_list_comments(); ?></ul>
+    <div class="navigation">
+    <div class="alignleft"><?php previous_comments_link() ?></div>
+    <div class="alignright"><?php next_comments_link() ?></div>
+    </div>
+    <?php else : // this is displayed if there are no comments so far ?>
+        <?php if ( comments_open() ) : ?>
+            <!-- <p>No comments so far.</p> -->
+        <?php else : // comments are closed ?>
+    <?php endif; ?>
+<?php endif; ?>
 
-		<ol class="comment-list">
-			<?php
-				wp_list_comments( array(
-					'style'       => 'ol',
-					'short_ping'  => true,
-					'avatar_size' => 74,
-				) );
-			?>
-		</ol><!-- .comment-list -->
-
-		<?php
-			// Are there comments to navigate through?
-			if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
-		?>
-		<nav class="navigation comment-navigation" role="navigation">
-			<h1 class="screen-reader-text section-heading"><?php _e( 'Comment navigation', 'minimore' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'minimore' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'minimore' ) ); ?></div>
-		</nav><!-- .comment-navigation -->
-		<?php endif; // Check for comment navigation ?>
-
-		<?php if ( ! comments_open() && get_comments_number() ) : ?>
-		<p class="no-comments"><?php _e( 'Comments are closed.' , 'minimore' ); ?></p>
-		<?php endif; ?>
-
-	<?php endif; // have_comments() ?>
-
-	<?php comment_form(); ?>
+<?php comment_form(); ?>
 
 </div><!-- #comments -->

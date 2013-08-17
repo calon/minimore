@@ -4,9 +4,9 @@
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 
-<title><?php if ( is_single() ) { ?> <?php } ?><?php wp_title(); ?>  <?php bloginfo('name'); ?></title>
+<title><?php wp_title( '@', true, 'right' ); ?></title>
 
-<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" />
 <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
@@ -14,9 +14,9 @@
 
 </style>
 
+<?php if ( is_singular() ) wp_enqueue_script( "comment-reply" ); ?>
+
 <?php
-    if ( is_singular() && get_option( 'thread_comments' ) )
-        wp_enqueue_script( 'comment-reply' );
     wp_head();
 ?>
 </head>
@@ -25,7 +25,7 @@
 <div id="container">
 
 <div id="header">
-		<h1><a href="<?php echo home_url(); ?>/"><?php bloginfo('name'); ?></a></h1>
+		<h1><a href="<?php echo esc_url(home_url('/')); ?>/"><?php bloginfo('name'); ?></a></h1>
         <h2><?php bloginfo('description'); ?></h2>
         <div class="search">
             <?php get_search_form(); ?>
